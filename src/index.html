@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unix Timestamp</title>
+	<style>
+		*{
+			margin: 0;
+			transition: all .5s;
+		}
+		body{
+			background-color: black;
+			color: whitesmoke;
+			text-align: center;
+			padding-top: 10%;
+			font-family: RalewayLight;
+			text-rendering: optimizeLegibility !important;
+   			-webkit-font-smoothing: antialiased !important;
+  			-moz-osx-font-smoothing: grayscale;
+		}
+		@font-face {
+ 			font-family:RalewayBold;
+		 	src: url(./Raleway-ExtraBold.ttf);
+		}
+		@font-face {
+		 	font-family:RalewayLight;
+			src: url(./Raleway-ExtraLight.ttf);
+		}
+		h1{
+			font-family: RalewayBold !important;
+		}
+		#time_t, #timeSpent{
+			font-size:800%;
+			text-shadow:  0px 1px 0px rgba(137,137,137,0.5), 0px 2px 0px rgba(137,137,137,0.5), 0px 3px 0px rgba(137,137,137,0.5), 0px 4px 0px rgba(137,137,137,0.5), 0px 5px 0px rgba(137,137,137,0.5), 0px 6px 0px rgba(137,137,137,0.5), 0px 7px 0px rgba(137,137,137,0.5);
+			word-wrap: break-word;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="octo.css">
+	<meta name="description" content="Until 32-bit versions of the Unix time stamp will cease to work.">
+</head>
+<body>
+	<a href="https://github.com/HalcyonInc/unixtimestamp" target="_blank"><github class="octo-right"><img src="github.svg"></github></a>
+	<div id="main">
+		<h1 id="time_t"></h1>
+		<h2 id="text">seconds until 32-bit versions of the Unix time stamp will cease to work.</h2>
+		<h1 id="timeSpent"></h1>
+		<h2 id="text">seconds wasted looking at this</h2>
+	</div>
+	<script type="text/javascript">
+		(function(){
+			var int32_l = 2147483647;
+			var time_t = document.getElementById("time_t");
+			var timeSpent = document.getElementById("timeSpent");
+			time_t.innerHTML = getTime();
+			var i = 0;
+			timeSpent.innerHTML = i++;
+			setInterval(function(){
+				time_t.innerHTML = getTime();
+				timeSpent.innerHTML = i++;
+			}, 1000);
+			function getTime(){ 
+				return (int32_l - Math.round((new Date()).getTime() / 1000)).toLocaleString(); 
+			}
+		})();
+	</script>
+</body>
+</html>
